@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成績計算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="gradeForm">
+        <label for="exam1">第一次段考成績 (20%):</label>
+        <input type="number" id="exam1" name="exam1" required>
+        <label for="exam2">第二次段考成績 (20%):</label>
+        <input type="number" id="exam2" name="exam2" required>
+        <label for="exam3">第三次段考成績 (20%):</label>
+        <input type="number" id="exam3" name="exam3" required>
+        <label for="daily">平時成績 (40%):</label>
+        <input type="number" id="daily" name="daily" required>
+        <button type="submit">計算總成績</button>
+    </form>
+    <div class="result" id="result"></div>
+    <div class="prediction" id="prediction"></div>
+
+    <script>
+        document.getElementById('gradeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const exam1 = parseFloat(document.getElementById('exam1').value);
+            const exam2 = parseFloat(document.getElementById('exam2').value);
+            const exam3 = parseFloat(document.getElementById('exam3').value);
+            const daily = parseFloat(document.getElementById('daily').value);
+            const total = (exam1 * 0.2) + (exam2 * 0.2) + (exam3 * 0.2) + (daily * 0.4);
+            document.getElementById('result').innerText = '總成績: ' + total.toFixed(2);
+
+            // 計算需要的第三次段考成績
+            const requiredScoreForExam3 = (60 - (exam1 * 0.2 + exam2 * 0.2 + daily * 0.4)) / 0.2;
+            if (requiredScoreForExam3 > 100) {
+                document.getElementById('prediction').innerText = '第三次段考需要成績: 超過100，無法達到總分60。';
+            } else if (requiredScoreForExam3 < 0) {
+                document.getElementById('prediction').innerText = '第三次段考需要成績: 已經超過60分。';
+            } else {
+                document.getElementById('prediction').innerText = '第三次段考需要成績: 至少 ' + requiredScoreForExam3.toFixed(2) + ' 分才能超過總分60。';
+            }
+        });
+    </script>
+</body>
+</html>
