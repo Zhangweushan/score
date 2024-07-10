@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成績計算器</title>
+    <title>第三次段考最低分計算</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,39 +12,69 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #f0f4f8;
+            margin: 0;
         }
         form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-top: 10px;
         }
         input[type="number"] {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
         button {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 12px;
             background-color: #28a745;
-            color: #fff;
+            color: #ffffff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
         }
         button:hover {
             background-color: #218838;
         }
-        .result {
+        .result, .prediction {
             margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .prediction {
+            margin-top: 10px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
     <form id="gradeForm">
+        <h1>第三次段考最低分計算</h1>
         <label for="exam1">第一次段考成績 (20%):</label>
         <input type="number" id="exam1" name="exam1" required>
         <label for="exam2">第二次段考成績 (20%):</label>
@@ -69,7 +99,7 @@
             document.getElementById('result').innerText = '總成績: ' + total.toFixed(2);
 
             // 計算需要的第三次段考成績
-            const requiredScoreForExam3 = (60 - (exam1 * 0.2 + exam2 * 0.2 + daily * 0.4)) / 0.2;
+            const requiredScoreForExam3 = (60 - (exam1 * 0.2 + exam2 * 0.2 + daily * 0.4 +exam3 * 0.2)) / 0.2;
             if (requiredScoreForExam3 > 100) {
                 document.getElementById('prediction').innerText = '第三次段考需要成績: 超過100，無法達到總分60。';
             } else if (requiredScoreForExam3 < 0) {
