@@ -96,7 +96,7 @@
             const exam3 = parseFloat(document.getElementById('exam3').value);
             const daily = parseFloat(document.getElementById('daily').value);
             const total = (exam1 * 0.2) + (exam2 * 0.2) + (exam3 * 0.2) + (daily * 0.4);
-            document.getElementById('result').innerText = '總成績: ' + total.toFixed(2);
+            document.getElementById('result').innerText = '總成績: ' + total.toFixed(1);
 
             // 計算需要的第三次段考成績
             const requiredScoreForExam3 = (60 - (exam1 * 0.2 + exam2 * 0.2 + daily * 0.4 +exam3 * 0.2)) / 0.2;
@@ -105,7 +105,7 @@
             } else if (requiredScoreForExam3 < 0) {
                 document.getElementById('prediction').innerText = '第三次段考需要成績: 已經超過60分。';
             } else {
-                document.getElementById('prediction').innerText = '第三次段考需要成績: 至少 ' + requiredScoreForExam3.toFixed(2) + ' 分才能超過總分60。';
+                document.getElementById('prediction').innerText = '第三次段考需要成績: 至少 ' + requiredScoreForExam3.toFixed(0) + ' 分才能超過總分60。';
             }
         });
     </script>
