@@ -4,38 +4,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>學習成績分析工具</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <form id="gradeForm">
             <h1>學習成績分析器</h1>
             <div class="input-group">
-                <label for="exam1">第一次段考成績 (20%):</label>
                 <div class="input-wrapper">
+                    <label for="exam1">第一次段考成績 (20%):</label>
                     <input type="number" id="exam1" name="exam1" required min="0" max="100" placeholder="輸入分數">
-                    <span class="input-icon"><i class="bi bi-bar-chart-fill"></i></span>
                 </div>
             </div>
             <div class="input-group">
-                <label for="exam2">第二次段考成績 (20%):</label>
                 <div class="input-wrapper">
+                    <label for="exam2">第二次段考成績 (20%):</label>
                     <input type="number" id="exam2" name="exam2" required min="0" max="100" placeholder="輸入分數">
-                    <span class="input-icon"><i class="bi bi-graph-up"></i></span>
                 </div>
             </div>
             <div class="input-group">
-                <label for="exam3">第三次段考成績 (20%):</label>
                 <div class="input-wrapper">
+                    <label for="exam3">第三次段考成績 (20%):</label>
                     <input type="number" id="exam3" name="exam3" required min="0" max="100" placeholder="輸入分數">
-                    <span class="input-icon"><i class="bi bi-pencil-fill"></i></span>
                 </div>
             </div>
             <div class="input-group">
-                <label for="daily">平時成績 (40%):</label>
                 <div class="input-wrapper">
+                    <label for="daily">平時成績 (40%):</label>
                     <input type="number" id="daily" name="daily" required min="0" max="100" placeholder="輸入分數">
-                    <span class="input-icon"><i class="bi bi-clipboard-data"></i></span>
                 </div>
             </div>
             <button type="submit" class="submit-btn">分析成績</button>
