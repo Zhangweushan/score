@@ -27,6 +27,7 @@ function displayResults(exam1, exam2, exam3, daily, total, requiredScoreForExam3
   const resultElement = document.getElementById('result');
   const predictionElement = document.getElementById('prediction');
   const gradeDetailsElement = document.getElementById('gradeDetails');
+  const resultsContainer = document.querySelector('.results-container');
   
   // Total score display
   resultElement.innerHTML = `<span>總成績: </span>
@@ -59,6 +60,10 @@ function displayResults(exam1, exam2, exam3, daily, total, requiredScoreForExam3
     <div>📝 第三次段考: ${exam3.toFixed(1)} 分 (權重 20%)</div>
     <div>📋 平時成績: ${daily.toFixed(1)} 分 (權重 40%)</div>
   `;
+  
+  // Animate results container
+  resultsContainer.style.opacity = '1';
+  resultsContainer.style.transform = 'translateY(0)';
 }
 
 function getGradeIndicatorClass(score) {

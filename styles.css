@@ -7,6 +7,7 @@
     --success-color: #2ecc71;
     --warning-color: #f39c12;
     --danger-color: #e74c3c;
+    --soft-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -16,61 +17,87 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-color);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--background-color) 0%, #e9f0f7 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     line-height: 1.6;
     color: var(--text-color);
+    perspective: 1000px;
 }
 
 .container {
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--soft-shadow);
+    padding: 35px;
     width: 100%;
-    max-width: 600px;
-    transition: all 0.3s ease;
+    max-width: 650px;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    transform: rotateX(-2deg) translateZ(-20px);
 }
 
 .container:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02) rotateX(0) translateZ(0);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
     color: var(--primary-color);
-    margin-bottom: 25px;
-    font-weight: 600;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 5px;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 input[type="number"] {
     width: 100%;
-    padding: 12px 45px 12px 15px;
+    padding: 14px 50px 14px 15px;
     border: 2px solid var(--input-border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
     transition: all 0.3s ease;
     outline: none;
+    background-color: #f9fafc;
 }
 
 input[type="number"]:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+    background-color: white;
+}
+
+.input-wrapper:hover label {
+    color: var(--primary-color);
 }
 
 .input-icon {
@@ -78,42 +105,50 @@ input[type="number"]:focus {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.6;
+    opacity: 0.7;
     color: var(--primary-color);
+    transition: all 0.3s ease;
 }
 
 .submit-btn {
     width: 100%;
-    padding: 14px;
-    background-color: var(--primary-color);
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.2);
 }
 
 .submit-btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(74, 144, 226, 0.3);
 }
 
 .results-container {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
 }
 
 .result-card {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
+    background: linear-gradient(145deg, #f6f9fc, #ffffff);
+    border-radius: 15px;
+    padding: 25px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--soft-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .result-card h3 {
@@ -166,4 +201,68 @@ input[type="number"]:focus {
 .grade-danger {
     background-color: rgba(231, 76, 60, 0.2);
     color: var(--danger-color);
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 15px;
+    perspective: none;
+  }
+
+  .container {
+    border-radius: 15px;
+    padding: 20px;
+    transform: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+  }
+
+  input[type="number"] {
+    padding: 12px 40px 12px 15px;
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .results-container {
+    margin-top: 15px;
+    gap: 15px;
+  }
+
+  .result-card {
+    padding: 15px;
+  }
+
+  .result, .prediction {
+    font-size: 16px;
+  }
+
+  .chart-container {
+    max-height: 250px;
+  }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media (max-width: 600px) {
+  .input-group,
+  .submit-btn {
+    touch-action: manipulation;
+  }
+
+  input[type="number"] {
+    /* Prevent iOS zoom on focus */
+    font-size: 16px;
+  }
 }
